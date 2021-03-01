@@ -33,19 +33,16 @@ Traveller.prototype.getJourneysByMinDistance = function (minDistance) {
 
 Traveller.prototype.calculateTotalDistanceTravelled = function () {
   return this.journeys.reduce((distanceTravelled, journey) => {
-    
     return distanceTravelled += journey.distance;
   }, 0);
   // go through each journey object and retrieve total distance travelled.  counting each distance in tandem and returning final value
 };
 
 Traveller.prototype.getUniqueModesOfTransport = function () {
-  return this.journeys.filter((transport) => {
-    return indexOf(transport) === index;
-});
-  // grab all journeys transport properties and stick in a list
-    // so no repeats of the same mode of transport!!!
-};
+  const allTransport = this.journeys.map(journey => journey.transport); 
+  const uniqueTransport = [... new Set(allTransport)];
 
+  return uniqueTransport;
+};
 
 module.exports = Traveller;
